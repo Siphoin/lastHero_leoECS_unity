@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorldProvider: {fileID: 282939132}
   InitializeOnStart: 1
-  _config: {fileID: 11400000, guid: c63ef54831beab647adca861c5809fc0, type: 2}
+  _configuration: {fileID: 11400000, guid: c63ef54831beab647adca861c5809fc0, type: 2}
 --- !u!4 &282939134
 Transform:
   m_ObjectHideFlags: 0

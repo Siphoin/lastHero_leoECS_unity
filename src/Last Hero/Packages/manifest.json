@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.affencode.leoecslite-zoo": "https://github.com/aleverdes/leoecslite-zoo.git",
     "com.leopotam.ecslite": "https://github.com/Leopotam/ecslite.git",
     "com.unity.collab-proxy": "1.17.7",
     "com.unity.feature.development": "1.0.1",
@@ -45,6 +44,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.leopotam.ecslite.di": "https://github.com/Leopotam/ecslite-di.git"
   }
 }

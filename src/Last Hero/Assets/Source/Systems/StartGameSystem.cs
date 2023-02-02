@@ -2,7 +2,7 @@
 using Leopotam.EcsLite;
 using UnityEngine.SceneManagement;
 
-namespace LastHero.Assets.Source.Systems
+namespace LastHero.Systems
 {
     internal class StartGameSystem : IEcsInitSystem
     {

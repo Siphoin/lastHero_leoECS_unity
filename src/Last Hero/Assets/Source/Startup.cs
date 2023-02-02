@@ -3,10 +3,7 @@ using LastHero.ScriptableObjects;
 using Leopotam.EcsLite;
 using UnityEngine;
 using System;
-using LastHero.Assets.Source.Systems;
-using UnityEngine.Rendering.VirtualTexturing;
-using UnityEditor;
-using LastHero.ScriptableObjects.Interfaces;
+using LastHero.Systems;
 
 namespace LastHero
 {
@@ -18,9 +15,11 @@ namespace LastHero
 
         private EcsSystems _coreSystems;
 
+
+
         private void Start()
         {
-            if (!_configuration)
+            if (_configuration is null)
             {
                 throw new NullReferenceException("config not seted");
             }
@@ -32,21 +31,44 @@ namespace LastHero
 
             if (InitializeOnStart)
             {
-                LeoEcsLiteInjector.AddInjection(_configuration);
-
-                _coreSystems = new EcsSystems(WorldProvider.World);
-
                 Initialize();
 
-                _coreSystems
-                    .Add(new StartGameSystem())
-                    .Inject()
-                    .Init();
+                AddCoreSystems();
+
+                AddOneFrameSystems();
+
+                InjectSystems();
+
+                StartSystems();
             }
 
-            }
+        }
 
-        
+        private void AddOneFrameSystems()
+        {
+
+        }
+
+        private void AddCoreSystems()
+        {
+
+            _coreSystems = new EcsSystems(WorldProvider.World);
+
+            _coreSystems
+                .Add(new StartGameSystem());
+        }
+
+        private void InjectSystems()
+        {
+            LeoEcsLiteInjector.AddInjection(_configuration);
+
+            _coreSystems.Inject();
+        }
+
+        private void StartSystems()
+        {
+            _coreSystems.Init();
+        }
 
         protected override void AddFixedUpdateSystems(EcsSystems ecsSystems)
         {
@@ -54,10 +76,26 @@ namespace LastHero
 
         protected override void AddLateUpdateSystems(EcsSystems ecsSystems)
         {
+
         }
 
         protected override void AddUpdateSystems(EcsSystems ecsSystems)
         {
+
+            ecsSystems
+                .Add(new InputPlayerSystem())
+                .Add(new InputZombieSystem());
+        }
+
+        private new void OnDestroy()
+        {
+            base.OnDestroy();
+
+            _coreSystems?.Destroy();
+
+            _coreSystems = null;
+
+
         }
     }
 

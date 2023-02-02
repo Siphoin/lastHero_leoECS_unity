@@ -20,8 +20,6 @@ namespace AffenCode
             if (InitializeOnStart)
             {
                 Initialize();
-
-                Debug.Log(54);
             }
         }
 
@@ -64,7 +62,7 @@ namespace AffenCode
             _fixedUpdateSystems?.Run();
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
             _updateSystems?.Destroy();
             _updateSystems = null;
